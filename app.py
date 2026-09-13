@@ -273,7 +273,41 @@ def logout():
 
     return redirect("/login")
 
+def initialiser_base():
 
+    os.makedirs("database", exist_ok=True)
+
+    conn = sqlite3.connect("database/chambre203.db")
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS clients (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nom TEXT NOT NULL,
+        telephone TEXT NOT NULL
+    )
+    """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS commandes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        numero TEXT NOT NULL,
+        nom_client TEXT NOT NULL,
+        telephone TEXT NOT NULL,
+        service TEXT NOT NULL,
+        fichier TEXT,
+        quantite INTEGER DEFAULT 1,
+        statut TEXT DEFAULT 'En attente',
+        date_commande TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        instructions TEXT
+    )
+    """)
+
+    conn.commit()
+    conn.close()
+
+
+initialiser_base()
 if __name__ == "__main__":
 
     app.run(
@@ -281,3 +315,4 @@ if __name__ == "__main__":
         port=8081,
         debug=True
     )
+
