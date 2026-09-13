@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Suivre ma commande - CHAMBRE 203</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .resultat {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .statut {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .erreur {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fee2e2;
+            color: #991b1b;
+            border-radius: 8px;
+        }
+
+        .retour {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🔎 CHAMBRE 203</h1>
+
+    <p>Suivre ma commande</p>
+
+</header>
+
+<div class="container">
+
+    <div class="box">
+
+        <h2>Suivez votre commande</h2>
+
+        <p>
+            Entrez le numéro de commande reçu après votre commande.
+        </p>
+
+        <form method="POST" action="/suivre">
+
+            <label for="numero">
+                Numéro de commande
+            </label>
+
+            <input
+                type="text"
+                id="numero"
+                name="numero"
+                placeholder="Exemple : CMD-203-965117"
+                required
+            >
+
+            <button type="submit">
+                🔎 Vérifier le statut
+            </button>
+
+        </form>
+
+
+        {% if commande %}
+
+        <div class="resultat">
+
+            <h3>📋 Votre commande</h3>
+
+            <p>
+                <strong>Numéro :</strong>
+                {{ commande["numero"] }}
+            </p>
+
+            <p>
+                <strong>Nom :</strong>
+                {{ commande["nom_client"] }}
+            </p>
+
+            <p>
+                <strong>Service :</strong>
+                {{ commande["service"] }}
+            </p>
+
+            <p>
+                <strong>Quantité :</strong>
+                {{ commande["quantite"] }}
+            </p>
+
+            <p>
+                <strong>Instructions :</strong>
+                {{ commande["instructions"] or "Aucune" }}
+            </p>
+
+            <div class="statut">
+                🔄 Statut :
+                {{ commande["statut"] }}
+            </div>
+
+        </div>
+
+        {% elif request.method == "POST" %}
+
+        <div class="erreur">
+
+            ❌ Commande introuvable.
+
+            <br><br>
+
+            Vérifiez votre numéro de commande.
+
+        </div>
+
+        {% endif %}
+
+
+        <a class="retour" href="/">
+            ← Retour à l'accueil
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

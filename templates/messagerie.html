@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Messagerie - CHAMBRE 203</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #111827;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+            color: #d1d5db;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .champ {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .obligatoire {
+            color: red;
+        }
+
+        .info {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .bouton {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .bouton:hover {
+            background: #1d4ed8;
+        }
+
+        .message {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+        }
+
+        .message-client {
+            background: #eff6ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .reponse {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .attente {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            color: #9a3412;
+        }
+
+        .retour {
+            display: block;
+            margin-top: 20px;
+            padding: 12px;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .contact {
+            margin-top: 20px;
+            text-align: center;
+            color: #4b5563;
+        }
+
+        .titre-reponses {
+            margin-top: 0;
+        }
+
+        .aucun {
+            text-align: center;
+            color: #6b7280;
+            padding: 15px;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 15px auto;
+                padding: 10px;
+            }
+
+            .box {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>💬 CHAMBRE 203</h1>
+
+    <p>Messagerie</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- ========================= -->
+    <!-- ENVOYER UN MESSAGE -->
+    <!-- ========================= -->
+
+    <div class="box">
+
+        <h2>💬 Envoyer un message</h2>
+
+        <div class="info">
+
+            📢 Vous pouvez nous envoyer un message
+            concernant votre commande ou demander
+            une information.
+
+            <br><br>
+
+            Après votre envoi, utilisez votre numéro
+            de téléphone ci-dessous pour consulter
+            les réponses de CHAMBRE 203.
+
+        </div>
+
+
+        <form
+            action="/messagerie"
+            method="POST"
+        >
+
+
+            <div class="champ">
+
+                <label for="nom">
+
+                    👤 Nom complet
+                    <span class="obligatoire">*</span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="nom"
+                    name="nom"
+                    placeholder="Exemple : Fidel Mushinganya"
+                    required
+                >
+
+            </div>
+
+
+            <div class="champ">
+
+                <label for="telephone">
+
+                    📞 Numéro de téléphone
+                    <span class="obligatoire">*</span>
+
+                </label>
+
+                <input
+                    type="tel"
+                    id="telephone"
+                    name="telephone"
+                    placeholder="Exemple : 0970000000"
+                    required
+                >
+
+            </div>
+
+
+            <div class="champ">
+
+                <label for="numero_commande">
+
+                    🧾 Numéro de commande
+
+                </label>
+
+                <input
+                    type="text"
+                    id="numero_commande"
+                    name="numero_commande"
+                    placeholder="Exemple : CMD-203-965117"
+                >
+
+            </div>
+
+
+            <div class="champ">
+
+                <label for="message">
+
+                    💬 Votre message
+                    <span class="obligatoire">*</span>
+
+                </label>
+
+                <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Écrivez votre message ici..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="bouton"
+            >
+
+                📤 Envoyer le message
+
+            </button>
+
+
+        </form>
+
+
+        <div class="contact">
+
+            📞 CHAMBRE 203 :
+            <strong>+243 970 053 774</strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- CONSULTER LES RÉPONSES -->
+    <!-- ========================= -->
+
+    <div class="box">
+
+        <h2 class="titre-reponses">
+            📩 Consulter mes réponses
+        </h2>
+
+        <div class="info">
+
+            Entrez le numéro de téléphone utilisé
+            lors de l'envoi de votre message.
+
+        </div>
+
+
+        <form
+            action="/messagerie"
+            method="GET"
+        >
+
+            <div class="champ">
+
+                <label for="telephone_recherche">
+
+                    📞 Votre numéro de téléphone
+
+                </label>
+
+                <input
+                    type="tel"
+                    id="telephone_recherche"
+                    name="telephone"
+                    placeholder="Exemple : 0970000000"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="bouton"
+            >
+
+                🔎 Voir mes messages
+
+            </button>
+
+        </form>
+
+
+        {% if messages is defined %}
+
+            <hr style="margin: 30px 0;">
+
+            {% if messages %}
+
+                {% for message in messages %}
+
+                    <div class="message">
+
+                        <strong>
+                            🧾
+                            {% if message['numero_commande'] %}
+                                {{ message['numero_commande'] }}
+                            {% else %}
+                                Message
+                            {% endif %}
+                        </strong>
+
+                        <div class="message-client">
+
+                            <strong>🧑 Votre message :</strong>
+
+                            <p>
+                                {{ message['message'] }}
+                            </p>
+
+                        </div>
+
+
+                        {% if message['reponse'] %}
+
+                            <div class="reponse">
+
+                                <strong>
+                                    👨‍💼 Réponse de CHAMBRE 203 :
+                                </strong>
+
+                                <p>
+                                    {{ message['reponse'] }}
+                                </p>
+
+                            </div>
+
+                        {% else %}
+
+                            <div class="attente">
+
+                                ⏳ Votre message est en attente
+                                de réponse.
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="aucun">
+
+                    📭 Aucun message trouvé pour
+                    ce numéro de téléphone.
+
+                </div>
+
+            {% endif %}
+
+        {% endif %}
+
+    </div>
+
+
+    <a
+        href="/"
+        class="retour"
+    >
+
+        ← Retour à l'accueil
+
+    </a>
+
+
+</div>
+
+
+</body>
+
+</html>

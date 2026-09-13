@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Détail commande - CHAMBRE 203</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .info {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .fichier {
+            background: #f8fafc;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+
+        .fichier a {
+            display: inline-block;
+            margin-top: 10px;
+            margin-right: 8px;
+            padding: 9px 14px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 7px;
+        }
+
+        .telecharger {
+            background: #16a34a !important;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 12px;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .retour {
+            display: block;
+            text-align: center;
+            color: #2563eb;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>🖨️ CHAMBRE 203</h1>
+
+    <p>Détails de la commande</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <!-- INFORMATIONS CLIENT -->
+
+    <div class="box">
+
+        <h2>📋 Informations de la commande</h2>
+
+        <div class="info">
+            <strong>Numéro :</strong>
+            {{ commande["numero"] }}
+        </div>
+
+        <div class="info">
+            <strong>Client :</strong>
+            {{ commande["nom_client"] }}
+        </div>
+
+        <div class="info">
+            <strong>Téléphone :</strong>
+            {{ commande["telephone"] }}
+        </div>
+
+        <div class="info">
+            <strong>Service :</strong>
+            {{ commande["service"] }}
+        </div>
+
+        <div class="info">
+            <strong>Quantité :</strong>
+            {{ commande["quantite"] }}
+        </div>
+
+        <div class="info">
+            <strong>Date :</strong>
+            {{ commande["date_commande"] }}
+        </div>
+
+        <div class="info">
+            <strong>Instructions du client :</strong>
+            {{ commande["instructions"] or "Aucune instruction" }}
+        </div>
+
+    </div>
+
+
+    <!-- STATUT -->
+
+    <div class="box">
+
+        <h2>🔄 Statut de la commande</h2>
+
+        <p>
+            Statut actuel :
+            <strong>{{ commande["statut"] }}</strong>
+        </p>
+
+        <form
+            method="POST"
+            action="/modifier-statut/{{ commande['id'] }}"
+        >
+
+            <select name="statut">
+
+                <option
+                    value="En attente"
+                    {% if commande["statut"] == "En attente" %}selected{% endif %}
+                >
+                    🟡 En attente
+                </option>
+
+                <option
+                    value="En cours"
+                    {% if commande["statut"] == "En cours" %}selected{% endif %}
+                >
+                    🔵 En cours
+                </option>
+
+                <option
+                    value="Imprimée"
+                    {% if commande["statut"] == "Imprimée" %}selected{% endif %}
+                >
+                    🟣 Imprimée
+                </option>
+
+                <option
+                    value="Terminée"
+                    {% if commande["statut"] == "Terminée" %}selected{% endif %}
+                >
+                    🟢 Terminée
+                </option>
+
+                <option
+                    value="Annulée"
+                    {% if commande["statut"] == "Annulée" %}selected{% endif %}
+                >
+                    🔴 Annulée
+                </option>
+
+            </select>
+
+            <button type="submit">
+                💾 Mettre à jour le statut
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- FICHIERS -->
+
+    <div class="box">
+
+        <h2>📎 Fichiers envoyés par le client</h2>
+
+        {% if fichiers %}
+
+            {% for fichier in fichiers %}
+
+                <div class="fichier">
+
+                    📄
+                    <strong>
+                        {{ fichier["nom_original"] }}
+                    </strong>
+
+                    <br>
+
+                    <a
+                        href="/voir-fichier/{{ fichier['nom_stockage'] }}"
+                        target="_blank"
+                    >
+                        👁️ Voir
+                    </a>
+
+                    <a
+                        class="telecharger"
+                        href="/telecharger/{{ fichier['nom_stockage'] }}"
+                    >
+                        📥 Télécharger
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>
+                📭 Aucun fichier n'a été envoyé avec cette commande.
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    <a class="retour" href="/commandes">
+        ← Retour aux commandes
+    </a>
+
+</div>
+
+</body>
+
+</html>

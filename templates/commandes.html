@@ -2,70 +2,80 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Commandes - CHAMBRE 203</title>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f6f9;
-            color: #222;
+            color: #111827;
         }
 
         header {
             background: #111827;
             color: white;
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
         }
 
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+            color: #d1d5db;
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 30px auto;
             padding: 20px;
         }
 
         .commande {
             background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
         .numero {
-            font-size: 22px;
+            font-size: 23px;
             font-weight: bold;
             color: #2563eb;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .info {
-            margin: 10px 0;
+            margin: 12px 0;
+            font-size: 16px;
         }
 
-        .fichier {
+        .instructions {
+            background: #f3f4f6;
+            padding: 15px;
             margin-top: 15px;
+            border-radius: 10px;
+            line-height: 1.5;
         }
 
-        .bouton-fichier {
+        .statut {
             display: inline-block;
-            margin-top: 8px;
+            margin-top: 18px;
             padding: 10px 15px;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        .statut-actuel {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 12px;
             background: #fef3c7;
             color: #92400e;
             border-radius: 8px;
@@ -77,165 +87,281 @@
         }
 
         select {
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 11px;
+            border: 1px solid #d1d5db;
             border-radius: 8px;
             font-size: 15px;
+            background: white;
         }
 
-        .bouton-statut {
-            padding: 10px 15px;
+        button {
+            padding: 11px 16px;
             margin-left: 5px;
             background: #16a34a;
             color: white;
             border: none;
             border-radius: 8px;
+            font-weight: bold;
             cursor: pointer;
+        }
+
+        button:hover {
+            background: #15803d;
+        }
+
+        .details {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 11px 16px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
             font-weight: bold;
         }
 
-        .bouton-statut:hover {
-            background: #15803d;
+        .details:hover {
+            background: #1d4ed8;
         }
 
         .retour {
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 15px;
+            margin-top: 10px;
+            padding: 11px 16px;
             background: #111827;
             color: white;
             text-decoration: none;
             border-radius: 8px;
         }
+
+        .aucune {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 15px auto;
+                padding: 10px;
+            }
+
+            .commande {
+                padding: 20px;
+            }
+
+            select {
+                width: 100%;
+            }
+
+            button {
+                width: 100%;
+                margin: 10px 0 0;
+            }
+
+            .details {
+                width: 100%;
+                text-align: center;
+            }
+
+        }
+
     </style>
+
 </head>
 
 <body>
 
+
 <header>
+
     <h1>📋 Commandes</h1>
-    <p>Gestion des commandes CHAMBRE 203</p>
+
+    <p>
+        Gestion des commandes CHAMBRE 203
+    </p>
+
 </header>
 
+
 <div class="container">
+
 
     {% for commande in commandes %}
 
     <div class="commande">
 
+
         <div class="numero">
-            {{ commande[1] }}
+
+            🧾 {{ commande["numero"] }}
+
         </div>
 
+
         <div class="info">
+
             👤 <strong>Client :</strong>
-            {{ commande[2] }}
+
+            {{ commande["nom_client"] }}
+
         </div>
 
+
         <div class="info">
+
             📞 <strong>Téléphone :</strong>
-            {{ commande[3] }}
+
+            {{ commande["telephone"] }}
+
         </div>
 
+
         <div class="info">
+
             🖨️ <strong>Service :</strong>
-            {{ commande[4] }}
-        </div>
 
-        <div class="fichier">
-
-            {% if commande[5] %}
-
-                📎 <strong>Fichier envoyé :</strong>
-                <br>
-
-                <a
-                    class="bouton-fichier"
-                    href="/static/uploads/{{ commande[5] }}"
-                    target="_blank"
-                >
-                    📎 Voir le fichier
-                </a>
-
-            {% else %}
-
-                📎 <strong>Aucun fichier envoyé</strong>
-
-            {% endif %}
+            {{ commande["service"] }}
 
         </div>
+
 
         <div class="info">
+
             🔢 <strong>Quantité :</strong>
-            {{ commande[6] }}
+
+            {{ commande["quantite"] }}
+
         </div>
 
-        <div class="info">
+
+        <div class="instructions">
+
             📝 <strong>Instructions :</strong>
-            {{ commande[9] or "Aucune instruction" }}
+
+            <br><br>
+
+            {{ commande["instructions"] or "Aucune instruction" }}
+
         </div>
+
 
         <div class="info">
+
             📅 <strong>Date :</strong>
-            {{ commande[8] }}
+
+            {{ commande["date_commande"] }}
+
         </div>
 
-        <div class="statut-actuel">
-            🔄 Statut actuel : {{ commande[7] }}
+
+        <div class="statut">
+
+            🔄 Statut actuel :
+
+            {{ commande["statut"] }}
+
         </div>
+
 
         <form
             class="form-statut"
-            action="/modifier-statut/{{ commande[0] }}"
+            action="/modifier-statut/{{ commande['id'] }}"
             method="POST"
         >
 
             <select name="statut">
 
-                <option value="En attente"
-                    {% if commande[7] == "En attente" %}selected{% endif %}>
+                <option
+                    value="En attente"
+                    {% if commande["statut"] == "En attente" %}selected{% endif %}
+                >
                     🟡 En attente
                 </option>
 
-                <option value="En cours"
-                    {% if commande[7] == "En cours" %}selected{% endif %}>
+                <option
+                    value="En cours"
+                    {% if commande["statut"] == "En cours" %}selected{% endif %}
+                >
                     🔵 En cours
                 </option>
 
-                <option value="Terminée"
-                    {% if commande[7] == "Terminée" %}selected{% endif %}>
+                <option
+                    value="Imprimée"
+                    {% if commande["statut"] == "Imprimée" %}selected{% endif %}
+                >
+                    🖨️ Imprimée / Prête
+                </option>
+
+                <option
+                    value="Terminée"
+                    {% if commande["statut"] == "Terminée" %}selected{% endif %}
+                >
                     🟢 Terminée
                 </option>
 
-                <option value="Annulée"
-                    {% if commande[7] == "Annulée" %}selected{% endif %}>
+                <option
+                    value="Annulée"
+                    {% if commande["statut"] == "Annulée" %}selected{% endif %}
+                >
                     🔴 Annulée
                 </option>
 
             </select>
 
-            <button class="bouton-statut" type="submit">
-                💾 Modifier le statut
+
+            <button type="submit">
+
+                💾 Modifier
+
             </button>
 
         </form>
 
+
+        <a
+            class="details"
+            href="/commande/{{ commande['id'] }}"
+        >
+
+            👁️ Voir les détails et les fichiers
+
+        </a>
+
+
     </div>
+
 
     {% else %}
 
-    <div class="commande">
+    <div class="aucune">
+
         <h2>📭 Aucune commande</h2>
-        <p>Il n'y a aucune commande enregistrée pour le moment.</p>
+
+        <p>
+            Aucune commande enregistrée pour le moment.
+        </p>
+
     </div>
 
     {% endfor %}
 
-    <a class="retour" href="/admin">
+
+    <a
+        class="retour"
+        href="/admin"
+    >
+
         ← Retour au tableau de bord
+
     </a>
+
 
 </div>
 
+
 </body>
+
 </html>

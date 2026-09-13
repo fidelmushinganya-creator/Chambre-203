@@ -1,49 +1,64 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Commander | CHAMBRE 203</title>
+    <title>Commander - CHAMBRE 203</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fb;
             margin: 0;
-            padding: 20px;
-            color: #172033;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #111827;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
+            margin: 0;
+            color: #d1d5db;
         }
 
         .container {
-            max-width: 650px;
+            max-width: 700px;
             margin: 30px auto;
+            padding: 20px;
+        }
+
+        .box {
             background: white;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         }
 
-        h1 {
-            text-align: center;
-            color: #0f172a;
-        }
-
-        h2 {
-            text-align: center;
-            color: #1e3a8a;
-            margin-bottom: 30px;
+        .champ {
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-top: 18px;
-            margin-bottom: 7px;
             font-weight: bold;
+            margin-bottom: 8px;
         }
 
         input,
@@ -53,180 +68,358 @@
             padding: 12px;
             border: 1px solid #d1d5db;
             border-radius: 8px;
-            font-size: 15px;
+            font-size: 16px;
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
         }
 
         textarea {
-            min-height: 100px;
+            min-height: 120px;
             resize: vertical;
         }
 
-        input[type="file"] {
-            background: #f8fafc;
-        }
-
-        .info {
+        .fichier-info {
             background: #eff6ff;
+            border: 1px solid #bfdbfe;
             padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            color: #1e3a8a;
+            border-radius: 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            color: #1e40af;
         }
 
-        button {
+        .bouton {
             width: 100%;
-            margin-top: 25px;
-            padding: 15px;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
             border: none;
             border-radius: 8px;
-            background: #1d4ed8;
-            color: white;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: bold;
             cursor: pointer;
         }
 
-        button:hover {
-            background: #1e3a8a;
+        .bouton:hover {
+            background: #1d4ed8;
         }
 
         .retour {
             display: block;
             text-align: center;
             margin-top: 20px;
-            color: #1d4ed8;
+            padding: 12px;
+            background: #111827;
+            color: white;
             text-decoration: none;
+            border-radius: 8px;
         }
 
-        .logo {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .obligatoire {
+            color: red;
         }
 
-        .logo span {
-            color: #f59e0b;
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f3f4f6;
+            border-radius: 10px;
+            font-size: 14px;
         }
+
+        @media (max-width: 600px) {
+
+            .container {
+                margin: 15px auto;
+                padding: 10px;
+            }
+
+            .box {
+                padding: 20px;
+            }
+
+            header {
+                padding: 20px 10px;
+            }
+
+        }
+
     </style>
+
 </head>
 
 <body>
 
+
+<header>
+
+    <h1>🖨️ CHAMBRE 203</h1>
+
+    <p>Passer une commande d'impression</p>
+
+</header>
+
+
 <div class="container">
 
-    <div class="logo">
-        🖨️ CHAMBRE <span>203</span>
+    <div class="box">
+
+        <h2>📋 Nouvelle commande</h2>
+
+        <p>
+            Remplissez les informations ci-dessous pour envoyer votre commande.
+        </p>
+
+
+        <form
+            action="/commande"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+
+
+            <!-- NOM -->
+
+            <div class="champ">
+
+                <label for="nom">
+                    👤 Nom complet
+                    <span class="obligatoire">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="nom"
+                    name="nom"
+                    placeholder="Exemple : Fidel Mushinganya"
+                    required
+                >
+
+            </div>
+
+
+            <!-- TELEPHONE -->
+
+            <div class="champ">
+
+                <label for="telephone">
+                    📞 Numéro de téléphone
+                    <span class="obligatoire">*</span>
+                </label>
+
+                <input
+                    type="tel"
+                    id="telephone"
+                    name="telephone"
+                    placeholder="Exemple : 0970000000"
+                    required
+                >
+
+            </div>
+
+
+            <!-- SERVICE -->
+
+            <div class="champ">
+
+                <label for="service">
+                    🖨️ Service demandé
+                    <span class="obligatoire">*</span>
+                </label>
+
+                <select
+                    id="service"
+                    name="service"
+                    required
+                >
+
+                    <option value="">
+                        -- Choisir un service --
+                    </option>
+
+                    <option value="Photocopie A4 N&B">
+                        Photocopie A4 N&B - 50 FC
+                    </option>
+
+                    <option value="Impression A4 N&B">
+                        Impression A4 N&B - 50 FC
+                    </option>
+
+                    <option value="Impression A4 couleur">
+                        Impression A4 couleur - 200 FC
+                    </option>
+
+                    <option value="A3">
+                        A3 - 3 000 FC
+                    </option>
+
+                    <option value="Scan">
+                        Scan - 300 FC
+                    </option>
+
+                    <option value="Reliure petite">
+                        Reliure petite - 700 FC
+                    </option>
+
+                    <option value="Reliure moyenne">
+                        Reliure moyenne - 1 500 FC
+                    </option>
+
+                    <option value="Reliure grande">
+                        Reliure grande - 2 000 FC
+                    </option>
+
+                    <option value="Plastification">
+                        Plastification - 3 000 FC
+                    </option>
+
+                    <option value="Carte de visite">
+                        Carte de visite - 5 $
+                    </option>
+
+                    <option value="Photo dans cadre A3">
+                        Photo dans cadre A3 - 10 $
+                    </option>
+
+                    <option value="Affiche">
+                        Affiche - Sur devis
+                    </option>
+
+                    <option value="T-shirt personnalisé">
+                        T-shirt personnalisé - 4,5 $
+                    </option>
+
+                    <option value="Invitations">
+                        Invitations - Sur devis
+                    </option>
+
+                    <option value="Autres services">
+                        Autres services - Sur devis
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- QUANTITE -->
+
+            <div class="champ">
+
+                <label for="quantite">
+                    🔢 Quantité
+                    <span class="obligatoire">*</span>
+                </label>
+
+                <input
+                    type="number"
+                    id="quantite"
+                    name="quantite"
+                    value="1"
+                    min="1"
+                    required
+                >
+
+            </div>
+
+
+            <!-- FICHIERS -->
+
+            <div class="champ">
+
+                <label for="fichier">
+                    📎 Fichier(s) à imprimer
+                </label>
+
+                <input
+                    type="file"
+                    id="fichier"
+                    name="fichier"
+                    accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.jpg,.jpeg,.png,.gif,.webp,.zip,.rar"
+                    multiple
+                >
+
+                <div class="fichier-info">
+
+                    📁 Vous pouvez sélectionner plusieurs fichiers.
+
+                    <br><br>
+
+                    Formats acceptés :
+
+                    <strong>
+                        PDF, Word, Excel, PowerPoint, TXT,
+                        JPG, JPEG, PNG, GIF, WebP, ZIP et RAR.
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- INSTRUCTIONS -->
+
+            <div class="champ">
+
+                <label for="instructions">
+                    📝 Instructions particulières
+                </label>
+
+                <textarea
+                    id="instructions"
+                    name="instructions"
+                    placeholder="Exemple : Imprimer en recto-verso, couleur, agrafé, etc."
+                ></textarea>
+
+            </div>
+
+
+            <!-- BOUTON -->
+
+            <button
+                type="submit"
+                class="bouton"
+            >
+                📤 Envoyer ma commande
+            </button>
+
+
+        </form>
+
+
+        <div class="note">
+
+            <strong>📌 Important :</strong>
+
+            Après l'envoi de votre commande, vous recevrez un
+            <strong>numéro de commande</strong>.
+
+            <br><br>
+
+            Conservez ce numéro. Il vous permettra de suivre
+            l'état de votre commande.
+
+        </div>
+
+
+        <a
+            href="/"
+            class="retour"
+        >
+            ← Retour à l'accueil
+        </a>
+
     </div>
-
-    <h1>📋 Passer une commande</h1>
-
-    <div class="info">
-        📎 Vous pouvez envoyer un PDF, Word, Excel ou une image.
-        Indiquez également vos instructions pour l'impression.
-    </div>
-
-    <form
-        action="/commande"
-        method="POST"
-        enctype="multipart/form-data"
-    >
-
-        <label for="nom">Nom complet</label>
-
-        <input
-            type="text"
-            id="nom"
-            name="nom"
-            placeholder="Exemple : Jean Mukendi"
-            required
-        >
-
-
-        <label for="telephone">Numéro de téléphone</label>
-
-        <input
-            type="tel"
-            id="telephone"
-            name="telephone"
-            placeholder="+243..."
-            required
-        >
-
-
-        <label for="service">Service</label>
-
-        <select id="service" name="service" required>
-
-            <option value="">
-                -- Choisir un service --
-            </option>
-
-            <option>Photocopie A4 N&B</option>
-            <option>Impression A4 N&B</option>
-            <option>Impression A4 couleur</option>
-            <option>A3</option>
-            <option>Scan</option>
-            <option>Reliure petite</option>
-            <option>Reliure moyenne</option>
-            <option>Reliure grande</option>
-            <option>Plastification</option>
-            <option>Carte de visite</option>
-            <option>Photo + cadre A3</option>
-            <option>T-shirt personnalisé</option>
-            <option>Affiche</option>
-            <option>Invitation de mariage</option>
-            <option>Invitation Kitchen Party</option>
-            <option>Invitation personnalisée</option>
-            <option>Autres services</option>
-
-        </select>
-
-
-        <label for="quantite">Quantité</label>
-
-        <input
-            type="number"
-            id="quantite"
-            name="quantite"
-            min="1"
-            value="1"
-            required
-        >
-
-
-        <label for="fichier">📎 Votre fichier</label>
-
-        <input
-            type="file"
-            id="fichier"
-            name="fichier"
-            accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
-        >
-
-
-        <label for="instructions">
-            📝 Instructions particulières
-        </label>
-
-        <textarea
-            id="instructions"
-            name="instructions"
-            placeholder="Exemple : impression couleur, recto-verso, 20 exemplaires..."
-        ></textarea>
-
-
-        <button type="submit">
-            📤 Envoyer ma commande
-        </button>
-
-    </form>
-
-    <a href="/" class="retour">
-        ← Retour à l'accueil
-    </a>
 
 </div>
 
+
 </body>
+
 </html>

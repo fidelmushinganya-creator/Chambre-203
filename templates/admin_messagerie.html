@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Messagerie Admin - CHAMBRE 203</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #111827;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 15px;
+        }
+
+        .message {
+            background: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .message h3 {
+            margin-top: 0;
+        }
+
+        .info {
+            color: #4b5563;
+            margin-bottom: 12px;
+        }
+
+        .texte {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+
+        .reponse {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .sans-reponse {
+            color: #dc2626;
+            font-weight: bold;
+        }
+
+        .retour {
+            display: block;
+            text-align: center;
+            background: #111827;
+            color: white;
+            text-decoration: none;
+            padding: 13px;
+            border-radius: 8px;
+            margin-top: 25px;
+        }
+
+        .aucun {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>💬 CHAMBRE 203</h1>
+
+    <p>Messagerie administrateur</p>
+
+</header>
+
+
+<div class="container">
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="message">
+
+                <h3>👤 {{ message['nom'] }}</h3>
+
+                <div class="info">
+                    📞 Téléphone :
+                    {{ message['telephone'] }}
+                </div>
+
+                {% if message['numero_commande'] %}
+
+                    <div class="info">
+                        🧾 Commande :
+                        {{ message['numero_commande'] }}
+                    </div>
+
+                {% endif %}
+
+                <div class="info">
+                    🕐 Date :
+                    {{ message['date_message'] }}
+                </div>
+
+                <strong>💬 Message du client :</strong>
+
+                <div class="texte">
+                    {{ message['message'] }}
+                </div>
+
+
+                {% if message['reponse'] %}
+
+                    <div class="reponse">
+
+                        <strong>📩 Réponse envoyée :</strong>
+
+                        <p>
+                            {{ message['reponse'] }}
+                        </p>
+
+                    </div>
+
+{% else %}
+
+    <div class="sans-reponse">
+        ⚠️ Ce message n'a pas encore reçu de réponse.
+    </div>
+
+    <form
+        action="/admin/repondre-message/{{ message['id'] }}"
+        method="POST"
+        style="margin-top: 15px;"
+    >
+
+        <textarea
+            name="reponse"
+            placeholder="Écrivez votre réponse au client..."
+            required
+            style="
+                width: 100%;
+                min-height: 100px;
+                padding: 12px;
+                border: 1px solid #d1d5db;
+                border-radius: 8px;
+                font-family: Arial, sans-serif;
+                font-size: 16px;
+                resize: vertical;
+            "
+        ></textarea>
+
+        <button
+            type="submit"
+            style="
+                margin-top: 10px;
+                padding: 12px 20px;
+                background: #2563eb;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-weight: bold;
+                cursor: pointer;
+            "
+        >
+            📤 Envoyer la réponse
+        </button>
+
+    </form>
+
+{% endif %}
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="aucun">
+
+            <h2>📭 Aucun message</h2>
+
+            <p>
+                Aucun client n'a encore envoyé de message.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <a href="/admin" class="retour">
+        ← Retour au tableau de bord
+    </a>
+
+</div>
+
+</body>
+
+</html>

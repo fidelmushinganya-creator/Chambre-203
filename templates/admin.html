@@ -2,28 +2,40 @@
 <html lang="fr">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Admin - CHAMBRE 203</title>
+    <title>Tableau de bord - CHAMBRE 203</title>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
             background: #f4f6f9;
-            color: #222;
+            color: #111827;
         }
 
         header {
             background: #111827;
             color: white;
-            padding: 20px;
+            padding: 25px 20px;
             text-align: center;
         }
 
         header h1 {
+            margin: 0 0 8px;
+        }
+
+        header p {
             margin: 0;
+            color: #d1d5db;
         }
 
         .container {
@@ -34,44 +46,46 @@
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .card {
             background: white;
             padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
         }
 
         .card h3 {
             margin-top: 0;
-            color: #555;
         }
 
         .number {
-            font-size: 32px;
+            font-size: 30px;
             font-weight: bold;
             color: #2563eb;
+            margin-top: 15px;
         }
 
         .menu {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
         }
 
         .menu a {
             display: block;
+            padding: 18px;
             background: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-decoration: none;
             color: #111827;
+            text-decoration: none;
+            border-radius: 12px;
             font-weight: bold;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            text-align: center;
         }
 
         .menu a:hover {
@@ -79,65 +93,164 @@
             color: white;
         }
 
-        .retour {
+        .deconnexion {
             display: inline-block;
             margin-top: 30px;
-            color: #2563eb;
+            padding: 12px 20px;
+            background: #dc2626;
+            color: white;
             text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
         }
+
+        @media (max-width: 800px) {
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .menu {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
     </style>
+
 </head>
 
 <body>
 
+
 <header>
+
     <h1>🔐 CHAMBRE 203</h1>
-    <p>Tableau de bord administrateur</p>
+
+    <p>
+        Tableau de bord administrateur
+    </p>
+
 </header>
+
 
 <div class="container">
 
+
+    <!-- STATISTIQUES -->
+
     <div class="cards">
 
+
         <div class="card">
+
             <h3>📋 Commandes</h3>
-<div class="number">{{ nombre_commandes }}</div>        </div>
+
+            <div class="number">
+                {{ nombre_commandes }}
+            </div>
+
+        </div>
+
 
         <div class="card">
+
             <h3>👥 Clients</h3>
-<div class="number">{{ nombre_clients }}</div>        </div>
 
-<div class="number">{{ nombre_commandes }}</div>        <div class="card">
-            <h3>💵 Recettes</h3>
-            <div class="number">0 FC</div>
+            <div class="number">
+                {{ nombre_clients }}
+            </div>
+
         </div>
+
 
         <div class="card">
-            <h3>💸 Dépenses</h3>
-            <div class="number">0 FC</div>
+
+            <h3>⏳ En attente</h3>
+
+            <div class="number">
+                {{ commandes_attente }}
+            </div>
+
         </div>
+
+
+        <div class="card">
+
+            <h3>🔄 En cours</h3>
+
+            <div class="number">
+                {{ commandes_en_cours }}
+            </div>
+
+        </div>
+
 
     </div>
+
+
+    <!-- MENU -->
 
     <h2>⚙️ Gestion</h2>
 
+
     <div class="menu">
 
-        <a href="#">📋 Commandes</a>
-        <a href="#">👥 Clients</a>
-        <a href="#">💰 Tarifs</a>
-        <a href="#">💵 Recettes</a>
-        <a href="#">💸 Dépenses</a>
-        <a href="#">🧾 Reçus</a>
-        <a href="#">💬 Messagerie</a>
+
+        <a href="/commandes">
+            📋 Commandes
+        </a>
+
+
+        <a href="#">
+            👥 Clients
+        </a>
+
+
+        <a href="#">
+            💰 Tarifs
+        </a>
+
+
+        <a href="#">
+            💵 Recettes
+        </a>
+
+
+        <a href="#">
+            💸 Dépenses
+        </a>
+
+
+        <a href="#">
+            🧾 Reçus
+        </a>
+
+
+<a href="/admin/messagerie">💬 Messagerie</a>
 
     </div>
 
-    <a class="retour" href="/">
-        ← Retour au site
+
+    <a
+        href="/logout"
+        class="deconnexion"
+    >
+        🚪 Déconnexion
     </a>
+
 
 </div>
 
+
 </body>
+
 </html>

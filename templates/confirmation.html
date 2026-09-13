@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Commande envoyée</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .box {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            color: #16a34a;
+        }
+
+        .numero {
+            font-size: 28px;
+            font-weight: bold;
+            color: #2563eb;
+            margin: 25px 0;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 20px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>✅ Commande envoyée !</h1>
+
+    <p>
+        Merci <strong>{{ nom }}</strong>.
+    </p>
+
+    <p>
+        Votre commande a été enregistrée avec succès.
+    </p>
+
+    <p>
+        Votre numéro de commande est :
+    </p>
+
+    <div class="numero">
+        {{ numero }}
+    </div>
+
+    <p>
+        📌 Conservez ce numéro pour suivre votre commande.
+    </p>
+
+    <a href="/suivre">
+        🔎 Suivre ma commande
+    </a>
+
+    <a href="/">
+        ← Accueil
+    </a>
+
+</div>
+
+</body>
+
+</html>
