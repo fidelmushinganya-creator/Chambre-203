@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connexion Admin - CHAMBRE 203</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-box {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+        }
+
+        h1 {
+            text-align: center;
+            color: #111827;
+            margin-bottom: 10px;
+        }
+
+        .sous-titre {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .erreur {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .retour {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <h1>🔐 CHAMBRE 203</h1>
+
+        <p class="sous-titre">
+            Connexion administrateur
+        </p>
+
+        {% if erreur %}
+            <div class="erreur">
+                {{ erreur }}
+            </div>
+        {% endif %}
+
+        <form action="/login" method="POST">
+
+            <label for="username">
+                👤 Nom d'utilisateur
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Entrez votre nom d'utilisateur"
+                required
+            >
+
+            <label for="password">
+                🔑 Mot de passe
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Entrez votre mot de passe"
+                required
+            >
+
+            <button type="submit">
+                🔓 Se connecter
+            </button>
+
+        </form>
+
+        <a class="retour" href="/">
+            ← Retour au site
+        </a>
+
+    </div>
+
+</body>
+
+</html>

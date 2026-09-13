@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CHAMBRE 203 | Imprimerie & Services</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: #0f172a;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span,
+        .phone,
+        .price {
+            color: #f59e0b;
+        }
+
+        .phone {
+            font-weight: bold;
+        }
+
+        nav {
+            background: #1e293b;
+            padding: 14px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #f59e0b;
+        }
+
+        .hero {
+            min-height: 500px;
+            background: linear-gradient(135deg, #0f172a, #1d4ed8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #f59e0b;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #dbeafe;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-secondary {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .section {
+            max-width: 1150px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title h2 {
+            font-size: 32px;
+            color: #0f172a;
+        }
+
+        .title p {
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.08);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .order {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer p {
+            margin: 8px;
+            color: #cbd5e1;
+        }
+
+        @media (max-width: 700px) {
+
+            header {
+                display: block;
+                text-align: center;
+            }
+
+            .phone {
+                margin-top: 8px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 6px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        🖨️ CHAMBRE <span>203</span>
+    </div>
+
+    <div class="phone">
+        📞 +243 970 053 774
+    </div>
+
+</header>
+
+<nav>
+
+    <a href="/">Accueil</a>
+    <a href="#services">Services</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="/commande">Commander</a>
+    <a href="#contact">Contact</a>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Votre impression,
+            <span>notre expertise.</span>
+        </h1>
+
+        <p>
+            CHAMBRE 203 vous accompagne pour vos impressions,
+            photocopies, reliures, plastifications, photos,
+            cartes de visite, invitations et créations personnalisées.
+        </p>
+
+        <a href="/commande" class="btn btn-primary">
+            📋 Commander
+        </a>
+
+        <a href="#tarifs" class="btn btn-secondary">
+            💰 Voir les tarifs
+        </a>
+
+    </div>
+
+</section>
+
+<section class="section" id="services">
+
+    <div class="title">
+
+        <h2>Nos services</h2>
+
+        <p>
+            Des solutions d'impression adaptées à vos besoins.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="icon">📄</div>
+            <h3>Impression</h3>
+            <p>
+                Impression de documents en noir et blanc
+                ou en couleur.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📑</div>
+            <h3>Photocopie</h3>
+            <p>
+                Photocopie rapide et soignée de vos documents.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📚</div>
+            <h3>Reliure</h3>
+            <p>
+                Reliure petite, moyenne et grande.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🛡️</div>
+            <h3>Plastification</h3>
+            <p>
+                Protection professionnelle de vos documents.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🪪</div>
+            <h3>Cartes de visite</h3>
+            <p>
+                Création et impression de cartes professionnelles.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🖼️</div>
+            <h3>Photos & cadres</h3>
+            <p>
+                Photos et cadres A3 pour vos souvenirs.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">👕</div>
+            <h3>T-shirts personnalisés</h3>
+            <p>
+                Personnalisation de T-shirts selon vos besoins.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">📢</div>
+            <h3>Affiches</h3>
+            <p>
+                Conception et impression d'affiches.
+            </p>
+        </div>
+
+        <!-- NOUVEAU SERVICE -->
+
+        <div class="card">
+
+            <div class="icon">💌</div>
+
+            <h3>Invitations de mariage</h3>
+
+            <p>
+                Création et impression de belles invitations
+                pour votre mariage.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">🎉</div>
+
+            <h3>Invitations Kitchen Party</h3>
+
+            <p>
+                Invitations personnalisées pour vos
+                Kitchen Party et événements.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <div class="icon">🎂</div>
+
+            <h3>Invitations personnalisées</h3>
+
+            <p>
+                Création d'invitations pour anniversaires,
+                cérémonies et autres événements.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section" id="tarifs">
+
+    <div class="title">
+
+        <h2>Nos tarifs</h2>
+
+        <p>
+            Consultez quelques-uns de nos tarifs.
+        </p>
+
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Photocopie A4 N&B</h3>
+            <div class="price">50 FC</div>
+        </div>
+
+        <div class="card">
+            <h3>Impression A4 N&B</h3>
+            <div class="price">50 FC</div>
+        </div>
+
+        <div class="card">
+            <h3>Impression A4 couleur</h3>
+            <div class="price">200 FC</div>
+        </div>
+
+        <div class="card">
+            <h3>A3</h3>
+            <div class="price">3 000 FC</div>
+        </div>
+
+        <div class="card">
+            <h3>Scan</h3>
+            <div class="price">300 FC</div>
+        </div>
+
+        <div class="card">
+            <h3>Reliure petite</h3>
+            <div class="price">700 FC</div>
+        </div>
+
+        <div class="card">
+            <h3>Reliure moyenne</h3>
+            <div class="price">1 500 FC</div>
+        </div>
+
+        <div class="card">
+            <h3>Reliure grande</h3>
+            <div class="price">2 000 FC</div>
+        </div>
+
+        <div class="card">
+            <h3>Plastification</h3>
+            <div class="price">3 000 FC</div>
+        </div>
+
+        <div class="card">
+            <h3>Carte de visite</h3>
+            <div class="price">5 $</div>
+        </div>
+
+        <div class="card">
+            <h3>Photo + cadre A3</h3>
+            <div class="price">10 $</div>
+        </div>
+
+        <div class="card">
+            <h3>T-shirt personnalisé</h3>
+            <div class="price">4,5 $</div>
+        </div>
+
+        <div class="card">
+            <h3>Affiche</h3>
+            <div class="price">Sur devis</div>
+        </div>
+
+        <div class="card">
+            <h3>Invitations</h3>
+            <div class="price">Sur devis</div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section" id="commande">
+
+    <div class="title">
+
+        <h2>📋 Commander</h2>
+
+        <p>
+            Envoyez-nous votre document ou votre demande.
+        </p>
+
+    </div>
+
+    <div class="order">
+
+        <h3>Votre fichier, directement chez CHAMBRE 203.</h3>
+
+        <p>
+            Envoyez vos PDF, Word, Excel, images et autres documents.
+            Vous pourrez également préciser vos besoins.
+        </p>
+
+        <br>
+
+        <a href="/commande" class="btn btn-primary">
+            📎 Envoyer mon fichier
+        </a>
+
+    </div>
+
+</section>
+
+<section class="section" id="contact">
+
+    <div class="title">
+
+        <h2>📞 Contact</h2>
+
+        <p>
+            Une question ? Contactez directement CHAMBRE 203.
+        </p>
+
+    </div>
+
+    <div class="order">
+
+        <h3>CHAMBRE 203</h3>
+
+        <div class="phone">
+            +243 970 053 774
+        </div>
+
+        <a
+            href="tel:+243970053774"
+            class="btn btn-primary"
+        >
+            📞 Appeler
+        </a>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="logo">
+        🖨️ CHAMBRE <span>203</span>
+    </div>
+
+    <p>Imprimerie & Services</p>
+
+    <p>📞 +243 970 053 774</p>
+
+    <p>
+        💌 Invitations de mariage • 🎉 Kitchen Party
+    </p>
+
+    <p>
+        © 2026 CHAMBRE 203 — Tous droits réservés.
+    </p>
+
+</footer>
+
+</body>
+</html>
